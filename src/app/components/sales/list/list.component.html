@@ -1,0 +1,22 @@
+
+ <div class="panel panel-default">
+   <div class="panel-heading">Ventas</div>
+   <table class="table">
+     <tr>
+       <th>No. Pedido</th>
+       <th>Fecha</th>
+       <th>Total</th>
+       <th>Cliente</th>
+       <th>Direccion</th>
+       <th>Prudctos/ Cantidad</th>
+     </tr>
+     <tr *ngFor="let sale of sales | filter:flt; let indx = index ">
+       <td>{{sale.order}}</td>
+       <td>{{sale.date}}</td>
+       <td>{{sale.total}}</td>
+       <td>{{sale.client.name}} {{sale.client.lastName}}</td>
+       <td>{{sale.address.street}}, {{sale.address.city}}</td>
+       <td><p *ngFor="let item of sale.items | filter:flt; let indx = index">{{item.quantity}} {{item.name}}</p></td>
+     </tr>
+   </table>
+ </div>

@@ -1,0 +1,68 @@
+<div class="container">
+<div class="" class="col-sm-6">
+  <h3>Clientes</h3>
+  <div class="form-group">
+    <select class="form-control" [(ngModel)]="client">
+      <option *ngFor="let user of users | filter:flt; let indx = index " [ngValue]="user">{{user.name}} {{user.lastName}}</option>
+    </select>
+  </div>
+
+    <div class="col-lg-10">
+      <h1>Datos Cliente</h1>
+    </div>
+
+    <div class="col-lg-6">
+    <div class="input-group">
+    <span><b>Nombre(s)</b></span>
+      <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" value="{{client?.name}}" readonly>
+    </div>
+  </div>
+
+    <div class="col-lg-6">
+    <div class="input-group">
+      <span><b>Aperllido(s)</b></span>
+    <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" value="{{client?.lastName}}" readonly>
+    </div>
+  </div>
+
+    <div class="col-lg-12">
+    <div class="input-group">
+      <span><b>Correo</b></span>
+    <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" value="{{client?.email}}" readonly>
+  </div>
+  </div>
+</div>
+
+
+<div class="" class="col-sm-6">
+  <h2>Productos</h2>
+  <div class="list-group">
+    <a class="list-group-item" *ngFor="let item of items | filter:flt; let indx = index " (click)="select(item)">{{item.name}}</a>
+  </div>
+</div>
+
+<div class="panel panel-default">
+<div class="panel-heading">Productos Seleccionados</div>
+<div class="panel-body">
+  <table class="table">
+    <tr>
+      <th>Id</th>
+      <th>Producto</th>
+      <th>Marca</th>
+      <th>Proveedor</th>
+      <th>Cantidad</th>
+      <th>Precio</th>
+      <th>Cantidad</th>
+    </tr>
+    <tr *ngFor="let item of selectedItems | filter:flt; let indx = index ">
+      <td>{{indx +1}}</td>
+      <td>{{item.name}}</td>
+      <td>{{item.brand}}</td>
+      <td>{{item.provider}}</td>
+      <td>{{item.quantity}}</td>
+      <td>{{item.price}}</td>
+    </tr>
+  </table>
+  </div>
+  </div>
+</div>

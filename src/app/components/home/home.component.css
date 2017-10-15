@@ -1,0 +1,12 @@
+h1{
+  text-align:center;
+  align-self: center;
+  font-size: 120px;
+}
+.hola{
+  height: 800px;
+  background-color: black;
+}
+a{
+  color: #45f442;
+}
