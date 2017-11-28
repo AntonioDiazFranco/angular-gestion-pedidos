@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../../services/Products/Product.service';
+import { ProductService } from '../../services/products/product.service';
 
 @Component({
   selector: 'app-inventory',
@@ -11,21 +11,9 @@ export class InventoryComponent implements OnInit {
   item: {id: "", name: "", brand: "", provider: "", quantity: "", price: ""};
   action: string = "default";
 
-  onSave(item){
-    if (this.action == "edit"){
-
-      }
-      if (this.action == "create"){
-        this.items.push(item);
-      }
-  }
-
   onCreate(){
     this.item = {id:"", name: "", brand: "", provider: "", quantity: "", price: ""};
     this.action = "create";
-  }
-  onDelete(index){
-    this.items.splice(index, 1);
   }
 
   onEdit(item){
@@ -36,7 +24,35 @@ export class InventoryComponent implements OnInit {
   constructor(private ProductService: ProductService) { }
 
   ngOnInit() {
-    this.items = this.ProductService.items;
+    console.log("Hola");
+    this.onFind();
+
+  }
+
+  onFind(){
+    this.ProductService.find().subscribe((res:any) => {
+      this.items = res.body;
+      console.log(res.body);
+   });
+  }
+
+  onSave(user){
+    if (this.action == "edit"){
+      this.ProductService.updateOne(user).subscribe((res:any) => {
+        this.onFind();
+      });
+    }
+    if (this.action == "create"){
+      this.ProductService.insertOne(user).subscribe((res:any) => {
+        this.onFind();
+      });
+    }
+  }
+
+  onDelete(id){
+    this.ProductService.deleteOne(id).subscribe((res:any) => {
+      this.onFind();
+    });
   }
 
 }

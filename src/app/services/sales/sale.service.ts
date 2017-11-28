@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
 
 @Injectable()
 export class SaleService {
@@ -8,7 +10,7 @@ export class SaleService {
   items: [],
   };
 
-  sales: any = [
+  /*sales: any = [
     {
       order: 223344,
       date:new Date(),
@@ -34,7 +36,24 @@ export class SaleService {
         {id:4, name: "Azucar", brand: "Chango", provider: "Adeco", quantity: "20", price: "25"}
       ],
     }
-  ];
-  constructor() { }
+  ];*/
+  constructor(private http:HttpClient) { }
+
+  find(){
+    console.log("Hola Pedidos");
+    return this.http.get('http://localhost:3000/api/sales');
+  }
+
+  insertOne(obj){
+    return this.http.post('http://localhost:3000/api/sales', obj);
+  }
+
+  updateOne(obj){
+    return this.http.put('http://localhost:3000/api/sales', obj);
+  }
+
+  deleteOne(id){
+    return this.http.delete('http://localhost:3000/api/sales/' + id);
+  }
 
 }

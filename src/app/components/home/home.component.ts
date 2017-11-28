@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ClientService } from '../../services/client/client.service';
+import { ProductService } from '../../services/products/product.service';
+import { SaleService } from '../../services/sales/sale.service';
+
 
 @Component({
   selector: 'app-home',
@@ -6,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  users: Array<any>;
+  user: {name: "", lastName: "", email: ""};
+  items: Array<any>;
+  item: {id: "", name: "", brand: "", provider: "", quantity: "", price: ""};
+  sale: Array<any>;
 
-
-  constructor() {
+  constructor(private clientService: ClientService, private ProductService: ProductService,private SaleService: SaleService) {
     var TxtType = function(el, toRotate, period) {
       this.toRotate = toRotate;
       this.el = el;
@@ -68,7 +76,31 @@ export class HomeComponent implements OnInit {
 
    }
 
-  ngOnInit() {
-  }
+   ngOnInit() {
+     console.log("Hola HOME");
+     this.onFind();
+     this.onFind2();
+     this.onFind3();
+   }
+
+   onFind(){
+     this.clientService.find().subscribe((res:any) => {
+       this.users = res.body;
+       console.log(res.body);
+    });
+   }
+   onFind2(){
+     this.ProductService.find().subscribe((res:any) => {
+       this.items = res.body;
+       console.log(res.body);
+    });
+   }
+   onFind3(){
+     this.SaleService.find().subscribe((res:any) => {
+       this.sale = res.body;
+       console.log(res.body);
+     });
+   }
+
 
 }

@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="wrapper">
+    <div class="container">
+        <div class="stencil">
+            <div class="line">
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="border-triangle"></div>
+        <div class="content-triangle"></div>
+        <div class="enter-triangle-one"></div>
+        <div class="enter-triangle-two"></div>
+        <form method="post" id="form" action="index.html">
+            <div class="title">
+                <label>Iniciar</label>
+                <label>Sesion</label>
+            </div>
+            <div class="input-inform">
+              <input  id="name" type="text" name="user" value="" placeholder="Usuario" [(ngModel)]='user'>
+              <input  id="password" type="password" name="password" value="" placeholder="Contraseña"  [(ngModel)]='password'>
+            </div>
+            <div class="enter">
+                <label for="enter"></label>
+                <input type="submit" name="submit" value="ENTER"  (click)="onLogin()" id="enter" />
+            </div>
+        </form>
+    </div>
+</div>
+</div>

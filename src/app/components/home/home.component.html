@@ -1,9 +1,77 @@
-<div class="hola">
-  <br>
-  <br>
-  <h1>
-    <a href="" class="typewrite" data-period="2000" data-type='[ "Hola, Antonio Diaz.", "Bienvenido a la clase de desarrollo rapido de aplicaciones web.", "Gestionaremos algunos pedidos." ]'>
-      <span class="wrap"></span>
-    </a>
-  </h1>
+  <h1  class="elegantshd">Proyecto final de desarrollo rapido de aplicaciones web</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Correo Electronico</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr  *ngFor="let user of users | filter:flt; let indx = index ">
+            <td>{{indx +1}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.lastName}}</td>
+            <td>{{user.email}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-sm-6">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Producto</th>
+            <th>Marca</th>
+            <th>Proveedor</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr  *ngFor="let item of items | filter:flt; let indx = index ">
+            <td>{{indx +1}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.brand}}</td>
+            <td>{{item.provider}}</td>
+            <td>{{item.quantity}}</td>
+            <td>{{item.price}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col-sm-12">
+    <table class="table table-inverse">
+      <thead>
+        <tr>
+          <th>Order</th>
+          <th>Date</th>
+          <th>Total</th>
+          <th>Client</th>
+          <th>Address</th>
+          <th>Items</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let sales of sale | filter:flt; let indx = index " >
+          <td>{{sales.order}}</td>
+          <td>{{sales.date | date}}</td>
+          <td>{{sales.total}}</td>
+          <td>{{sales.client.name}}
+              {{sales.client.lastName}}
+              {{sales.client.email}}</td>
+          <td>{{sales.address.street}}
+              {{sales.address.city}}
+              {{sales.address.zip}}</td>
+          <td> <span *ngFor= "let item of sales.items | filter:flt; let indx = index">{{item.quantity}} de {{item.name}} <br></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

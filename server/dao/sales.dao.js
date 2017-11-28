@@ -5,7 +5,7 @@ const db        = require('../database/mongo');
 var DAO = {
 
   find: function(req, res){
-    db.find("sales").then(function(data){
+    db.find("pedidos").then(function(data){
       console.log("find:");
 			res.json(data);
     }).catch(function (error) {
@@ -15,7 +15,7 @@ var DAO = {
 
   insertOne: function(req, res){
     console.log("insertOne: ", req.body);
-    db.insertOne("sales", req.body).then(function(data){
+    db.insertOne("pedidos", req.body).then(function(data){
 			res.json(data);
     }).catch(function (error) {
       res.json(error);
@@ -24,7 +24,7 @@ var DAO = {
 
   updateOne: function(req, res){
     console.log("updateOne: body: ", req.body);
-    db.updateOne("sales", req.body ).then(function(data){
+    db.updateOne("pedidos", req.body ).then(function(data){
 			res.json(data);
     }).catch(function (error) {
       res.json(error);
@@ -33,7 +33,7 @@ var DAO = {
 
   deleteOne: function(req, res){
     console.log("deleteOne: id: ", req.params.id);
-    db.deleteOne("sales", req.params.id ).then(function(data){
+    db.deleteOne("pedidos", req.params.id ).then(function(data){
 			res.json(data);
     }).catch(function (error) {
       res.json(error);

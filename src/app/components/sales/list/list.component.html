@@ -1,22 +1,35 @@
-
- <div class="panel panel-default">
-   <div class="panel-heading">Ventas</div>
-   <table class="table">
-     <tr>
-       <th>No. Pedido</th>
-       <th>Fecha</th>
-       <th>Total</th>
-       <th>Cliente</th>
-       <th>Direccion</th>
-       <th>Prudctos/ Cantidad</th>
-     </tr>
-     <tr *ngFor="let sale of sales | filter:flt; let indx = index ">
-       <td>{{sale.order}}</td>
-       <td>{{sale.date}}</td>
-       <td>{{sale.total}}</td>
-       <td>{{sale.client.name}} {{sale.client.lastName}}</td>
-       <td>{{sale.address.street}}, {{sale.address.city}}</td>
-       <td><p *ngFor="let item of sale.items | filter:flt; let indx = index">{{item.quantity}} {{item.name}}</p></td>
-     </tr>
-   </table>
- </div>
+<div class="container">
+  <div class="input-group">
+      <span class="input-group-addon" id="basic-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
+      <input type="text" class="form-control" aria-describedby="basic-addon1" name="flt" id="flt" [(ngModel)]="flt">
+  </div>
+  <table class="table table-inverse table-hover">
+    <thead>
+      <tr>
+        <th>Order</th>
+        <th>Date</th>
+        <th>Total</th>
+        <th>Client</th>
+        <th>Address</th>
+        <th>Items</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let sales of sale | filter:flt; let indx = index " >
+        <td>{{sales.order}}</td>
+        <td>{{sales.date | date}}</td>
+        <td>{{sales.total}}</td>
+        <td>{{sales.client.name}}
+            {{sales.client.lastName}}
+            {{sales.client.email}}</td>
+        <td>{{sales.address.street}}
+            {{sales.address.city}}
+            {{sales.address.zip}}</td>
+        <td> <span *ngFor= "let item of sales.items | filter:flt; let indx = index">{{item.quantity}} de {{item.name}} <br></span></td>
+        <!--<td><button type="button" class="btn btn-sm btn-primary" (click)="onEdit(item)" data-toggle="modal" data-target="#salesModal">Editar </button></td>-->
+        <td><button type="button" class="btn btn-sm btn-danger"  (click)="onDelete(sales._id)">Eliminar </button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

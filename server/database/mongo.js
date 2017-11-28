@@ -5,6 +5,7 @@ const q             = require("q");
 //const url = 'mongodb://app:BN15doPDRWCYfq3Q@cluster0-shard-00-00-q3ilt.mongodb.net:27017,cluster0-shard-00-01-q3ilt.mongodb.net:27017,cluster0-shard-00-02-q3ilt.mongodb.net:27017/app?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin';
 //const url = 'mongodb://localhost:27017/app';
 const url = 'mongodb://clase:kMIbAHTVYsnzrD7S@cluster0-shard-00-00-woeow.mongodb.net:27017,cluster0-shard-00-01-woeow.mongodb.net:27017,cluster0-shard-00-02-woeow.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin';
+
 // Connect
 const connection = (closure) => {
     return MongoClient.connect(url, (err, db) => {
